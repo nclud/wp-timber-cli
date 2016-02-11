@@ -1,6 +1,6 @@
 import fs from 'fs'
 
-export const deleteTemplates = function(args){
+const deleteTemplates = function(args){
   var type = args[0];
   var name = args[1];
 
@@ -19,3 +19,5 @@ export const deleteTemplates = function(args){
     }
   });
 }
+
+export default deleteTemplates

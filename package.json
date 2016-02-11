@@ -13,12 +13,25 @@
     "test": "mocha ./test/test.js",
     "build": "rimraf lib && babel src -d lib"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nclud/wp-timber-cli"
+  },
   "keywords": [
     "wordpress",
-    "twig"
+    "twig",
+    "timber"
   ],
-  "author": "Ramsay Lanier <ramsaylanier@gmail.com> (ramsaylanier.com)",
+  "author": "nlcud <hello@nclud.com> (http://nclud.com)",
+  "contributors": [
+    "Ramsay Lanier <ramsaylanier@gmail.com> (http://ramsaylanier.com)",
+    "Zakk Fleischmann <zakk@nclud.com> (http://zakkman.github.io)"
+  ],
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nclud/wp-timber-cli/issues"
+  },
+  "homepage": "https://github.com/nclud/wp-timber-cli#readme",
   "dependencies": {
     "cli": "^0.11.1",
     "mkdirp": "^0.5.1",
