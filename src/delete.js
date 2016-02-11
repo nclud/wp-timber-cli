@@ -1,8 +1,8 @@
 import fs from 'fs'
 
 const deleteTemplates = function(args){
-  var type = args[0];
-  var name = args[1];
+  const type = args[0];
+  const name = args[1];
 
   fs.unlink('./' + type + '-' + name + '.php', function(err){
     if (err){
