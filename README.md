@@ -35,9 +35,11 @@ Timber::render("/views/pages/page-test.twig", $context);
 You can create a basic WordPress query for an existing page template, or when create a new template using this CLI.
 
 **Existing Template**
-`wp-timber -q page-your-template.php <post-type-to-query-for>`
+
+`wp-timber -q page-about.php custom-post-type`
 
 **When Create a New Template**
+
 `wp-timber -c page about -q custom-post-type`
 
 
