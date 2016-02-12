@@ -8,7 +8,7 @@ run `npm install --save wp-timber-cli` inside your root WordPress theme director
 ##Usage
 Timber CLI will create a WordPress PHP template and corresponding twig template and automatically create some default Timber stuff.
 
-####Create Templates
+###Create Templates
 From the command line, run `wp-timber -c <type> <name>` where type is the type of template (page, single, archive) and name is, you guessed it, the name of the template.
 
 **Example Output**
@@ -31,7 +31,7 @@ Timber::render("/views/pages/page-test.twig", $context);
 ?>
 ```
 
-####Create Query
+###Create Query
 You can create a basic WordPress query for an existing page template, or when create a new template using this CLI.
 
 **Existing Template**
@@ -59,8 +59,8 @@ Timber::render("/views/pages/page-about.twig", $context);
 ```
 
 
-####Delete
+###Remove Templates
 
-`wp-timber -d page about-us`
+`wp-timber -r page about-us`
 
 This will find a .php template called `page-about-us.php` in the root theme directory and delete it, as well as the corresponding twig template in `/views/pages/`.
