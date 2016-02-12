@@ -4,10 +4,12 @@ import mkdirp from 'mkdirp';
 const createTemplates = args => {
   const type = args[0];
   const name = args[1];
-
+  
   fs.writeFileSync(type + '-' + name + '.php', buildPHPTemplate(type, name));
   mkdirp.sync( './views/' + type + 's');
   fs.writeFileSync('./views/' + type + 's/' + type + '-' + name + '.twig');
+
+  console.log('Template Created!');
 
 }
 

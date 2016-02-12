@@ -5,27 +5,39 @@ import fs from 'fs';
 import mkdirp from 'mkdirp';
 
 
-import createTemplates from './create.js'
-import deleteTemplates from './delete.js';
+import createTemplates from './createTemplates.js'
+import deleteTemplates from './removeTemplates.js';
+import createQuery from './createQuery.js';
 
 cli.parse({
     create:   ['c', 'Create A Template'],
-    delete:   ['d', 'Delete A Template'],
+    remove:   ['r', 'Remove A Template'],
+    query:   ['q', 'Add Query to Template'],
     help:   ['h', 'HALP']
 });
 
 
 cli.main(function(args, options){
 
-  if (options.create){
+  // console.log('args: ', args);
+  // console.log('options: ', options);
+
+  const { create, remove, query, help } = options;
+
+
+  if (create){
     createTemplates(args);
   }
 
-  if (options.delete){
+  if (remove){
     deleteTemplates(args);
   }
 
-  if (options.help){
+  if (query){
+    createQuery(args, create);
+  }
+
+  if (help){
     help();
   }
 
