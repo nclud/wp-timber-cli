@@ -14,6 +14,8 @@ const createQuery = function(args, create){
     postType = args[1];
   }
 
+  const postTypeUnderscore = postType.replace(/-/g, '_');
+
   fs.readFile(file, 'utf8', function(err, data){
     if (err){
       console.log(err)
@@ -24,7 +26,7 @@ const createQuery = function(args, create){
 
   function checkTemplateForExistingQuery(data){
 
-    const existingQuery = '$' + postType + 'sArgs';
+    const existingQuery = '$' + postTypeUnderscore + 's_args';
 
     if (data.indexOf(existingQuery) == -1){
       writeQuery(data)
@@ -35,7 +37,7 @@ const createQuery = function(args, create){
 
   function writeQuery(data){
 
-    const queryText = '$' + postType + 'sArgs = array( \n '+
+    const queryText = '$' + postTypeUnderscore + 's_args = array( \n '+
                   ' "post_type"     => "' + postType + '" \n ' +
                   ');';
     const query = data.replace(/(<\?php)/, "<?php \n\n " + queryText);
@@ -44,7 +46,7 @@ const createQuery = function(args, create){
 
   function addQueryToContext(query){
 
-    const contextText = '$context["' + postType + 's"] = Timber::get_posts($' + postType + 'sArgs);';
+    const contextText = '$context["' + postTypeUnderscore + 's"] = Timber::get_posts($' + postTypeUnderscore + 's_args);';
     const newQuery = query.replace(/\$context\[\"post\"\] = \$post;/, '$context["post"] = $post;\n' + contextText);
 
     fs.writeFile(file, newQuery, function(err, res){
