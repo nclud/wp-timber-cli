@@ -42,18 +42,18 @@ You can create a basic WordPress query for an existing page template, or when cr
 
 
 **Output**
-```
-<?php
+```php
+<?php 
 
- $custom-post-typesArgs = array(
-  "post_type"     => "custom-post-type"
- );
+ $custom_post_types_args = array( 
+  "post_type"     => "custom-post-type" 
+ ); 
 
-$context = Timber::get_context();
-$post = new TimberPost();
+$context = Timber::get_context(); 
+$post = new TimberPost(); 
 $context["post"] = $post;
-$context["custom-post-types"] = Timber::get_posts($custom-post-typesArgs);
-Timber::render("/views/pages/page-about.twig", $context);
+$context["custom_post_types"] = Timber::get_posts($custom_post_types_args); 
+Timber::render("/views/pages/page-about.twig", $context); 
 
 ?>
 ```
