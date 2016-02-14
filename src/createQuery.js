@@ -1,13 +1,13 @@
 import fs from 'fs';
 
 const createQuery = function(args, create){
-
-  let type, name, postType, file;
+  let type, name, postType, queryOptions, file;
 
   if (create){
     type = args[0];
     name = args[1];
     postType = args[2];
+    queryOptions = args[3];
     file = './' + type + '-' + name + '.php';
   } else {
     file = args[0];
@@ -26,7 +26,7 @@ const createQuery = function(args, create){
 
   function checkTemplateForExistingQuery(data){
 
-    const existingQuery = '$' + postTypeUnderscore + 's_args';
+    const existingQuery = '$' + postTypeUnderscore + '_args';
 
     if (data.indexOf(existingQuery) == -1){
       writeQuery(data)
@@ -35,10 +35,21 @@ const createQuery = function(args, create){
     }
   }
 
-  function writeQuery(data){
+  function writeQueryOptions(options){
+    let optionsString = '';
+    Object.keys(options).map( option => {
+      const value = options[option];
+      optionsString += ' "' + option + '"\t\t\t=> "' + value + '",\n ';
+    })
 
-    const queryText = '$' + postTypeUnderscore + 's_args = array( \n '+
-                  ' "post_type"     => "' + postType + '" \n ' +
+    return optionsString;
+  }
+
+  function writeQuery(data){
+    const queryOptionsText = queryOptions ? writeQueryOptions(queryOptions) : '';
+    const queryText = '$' + postTypeUnderscore + '_args = array( \n '+
+                  ' "post_type"\t\t\t=> "' + postType + '",\n ' +
+                  queryOptionsText +
                   ');';
     const query = data.replace(/(<\?php)/, "<?php \n\n " + queryText);
     addQueryToContext(query);
@@ -46,7 +57,7 @@ const createQuery = function(args, create){
 
   function addQueryToContext(query){
 
-    const contextText = '$context["' + postTypeUnderscore + 's"] = Timber::get_posts($' + postTypeUnderscore + 's_args);';
+    const contextText = '$context["' + postTypeUnderscore + '"] = Timber::get_posts($' + postTypeUnderscore + '_args);';
     const newQuery = query.replace(/\$context\[\"post\"\] = \$post;/, '$context["post"] = $post;\n' + contextText);
 
     fs.writeFile(file, newQuery, function(err, res){

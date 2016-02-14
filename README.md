@@ -25,7 +25,7 @@ _page-about-us.php_
 
 $context = Timber::get_context();
 $post = new TimberPost();
-$context["post"] = $post; 
+$context["post"] = $post;
 Timber::render("/views/pages/page-test.twig", $context);
 
 ?>
@@ -45,17 +45,17 @@ You can create a basic WordPress query for an existing page template, or when cr
 
 **Output**
 ```php
-<?php 
+<?php
 
- $custom_post_types_args = array( 
-  "post_type"     => "custom-post-type" 
- ); 
+ $custom_post_types_args = array(
+  "post_type"     => "custom-post-type"
+ );
 
-$context = Timber::get_context(); 
-$post = new TimberPost(); 
+$context = Timber::get_context();
+$post = new TimberPost();
 $context["post"] = $post;
-$context["custom_post_types"] = Timber::get_posts($custom_post_types_args); 
-Timber::render("/views/pages/page-about.twig", $context); 
+$context["custom_post_types"] = Timber::get_posts($custom_post_types_args);
+Timber::render("/views/pages/page-about.twig", $context);
 
 ?>
 ```
@@ -66,3 +66,39 @@ Timber::render("/views/pages/page-about.twig", $context);
 `wp-timber -r page about-us`
 
 This will find a .php template called `page-about-us.php` in the root theme directory and delete it, as well as the corresponding twig template in `/views/pages/`.
+
+###Build from a Config file
+With Timber CLI you can generate a series of templates with queries from a configuration file. Create a `.timber` file that contains JSON to generate as many templates with queries as you want.
+
+Here's an example config file:
+```JSON
+{
+  "page": {
+    "blog": {
+      "queries":{
+        "news": {
+          "post_per_page": 10,
+          "orderby": "title"
+        },
+        "custom-posts": {
+          "post_per_page": 20,
+          "orderby": "date"
+        }
+      }
+    },
+    "about-us": {}
+  },
+  "archive": {
+    "events": {},
+  },
+  "single": {
+    "event": {}
+  }
+}
+```
+
+Running `wp-timber build` will generate the following PHP/twig templates:
+* `page-blog.php` with two queries: one for 'news' post type and one for 'custom-posts' **and** `views/pages/page-blog.twig` file
+* `page-about-us.php` **and** `views/pages/page-about-us.twig`
+* `archive-events.php` **and** `views/archives/archive-events.twig`
+* `single-event.php` **and** `views/singles/single-event.twig`

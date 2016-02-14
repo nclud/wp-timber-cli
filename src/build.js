@@ -25,15 +25,13 @@ function parseFile(file){
       const args = [type, name]
       createTemplates(args);
 
-      const queries = BuildType[name].queries;
-      if (queries){
-        Object.keys(queries).map( (query, index) => {
+      const Queries = BuildType[name].queries;
+      if (Queries){
+        Object.keys(Queries).map( (query, index) => {
           setTimeout(function(){
-            console.log(query);
-            const fileName = './' + type + '-' + name + '.php';
-            const queryArgs = [fileName, query];
-            createQuery(queryArgs);
-          }, 1000 * (index + 1));
+            const queryArgs = [type, name, query, Queries[query]];
+            createQuery(queryArgs, true);
+          }, 10 * (index + 1));
         });
       }
     })

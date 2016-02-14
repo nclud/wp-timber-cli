@@ -1,10 +1,24 @@
 {
   "page": {
-    "test": {
+    "blog": {
       "queries":{
-        "news": {},
-        "custom-post": {}
+        "news": {
+          "post_per_page": 10,
+          "orderby": "title"
+        },
+        "custom-posts": {
+          "post_per_page": 20,
+          "orderby": "date"
+        }
       }
-    }
+    },
+    "about-us": {}
+  },
+  "archive": {
+    "events": {},
+  },
+  "single": {
+    "event": {},
+    "news": {}
   }
 }
