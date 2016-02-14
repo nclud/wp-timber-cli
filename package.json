@@ -1,14 +1,13 @@
 {
   "name": "wp-timber-cli",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "CLI for wordpress and Timber-WP with Twig",
   "files": [
     "lib"
   ],
   "main": "./lib/index.js",
   "bin": {
-    "wp-timber": "./lib/index.js",
-    "wp-timber build": "./lib/build.js"
+    "wp-timber": "./lib/index.js"
   },
   "scripts": {
     "test": "mocha ./test/test.js",
