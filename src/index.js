@@ -22,7 +22,7 @@ cli.main(function(args, options){
   // console.log('args: ', args);
   // console.log('options: ', options);
 
-  const { create, remove, query, help } = options;
+  const { create, remove, query, help, init } = options;
 
 
   if (create){
@@ -39,6 +39,10 @@ cli.main(function(args, options){
 
   if (help){
     help();
+  }
+
+  if (init){
+    init();
   }
 
 });

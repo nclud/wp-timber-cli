@@ -1,8 +1,8 @@
 var assert = require('assert');
 var fs = require('fs');
 var rimraf = require('rimraf');
-var createTemplates = require('../create.js')
-var deleteTemplates = require('../delete.js')
+var createTemplates = require('../lib/createTemplates.js');
+var deleteTemplates = require('../lib/removeTemplates.js');
 
 function cleanUp(){
   rimraf.sync('./views');

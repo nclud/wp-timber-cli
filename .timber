@@ -1,0 +1,10 @@
+{
+  "page": {
+    "test": {
+      "queries":{
+        "news": {},
+        "custom-post": {}
+      }
+    }
+  }
+}
