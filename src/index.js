@@ -8,12 +8,14 @@ import mkdirp from 'mkdirp';
 import createTemplates from './createTemplates.js'
 import deleteTemplates from './removeTemplates.js';
 import createQuery from './createQuery.js';
-import buildTemplatesFromConfig from './build.js'
+import buildTemplatesFromConfig from './build.js';
+import creaeSubclass from './createSubclass.js';
 
 cli.parse({
     create:   ['c', 'Create A Template'],
     remove:   ['r', 'Remove A Template'],
     query:   ['q', 'Add Query to Template'],
+    subclass: ['s', 'Add An Object Subclass'],
     help:   ['h', 'HALP']
 });
 
@@ -47,6 +49,10 @@ cli.main(function(args, options){
 
     if (init){
       init();
+    }
+
+    if (subclass) {
+      createSubclass(args);
     }
   }
 

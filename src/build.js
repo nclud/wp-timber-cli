@@ -6,6 +6,7 @@ import mkdirp from 'mkdirp';
 
 import createTemplates from './createTemplates.js'
 import createQuery from './createQuery.js';
+import createSubclass from './createSubclass.js';
 
 const buildTemplatesFromConfig = function(){
   fs.readFile('./.timber', 'utf8', function(err, res){
