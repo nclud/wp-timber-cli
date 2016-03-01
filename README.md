@@ -67,6 +67,27 @@ Timber::render("/views/pages/page-about.twig", $context);
 
 This will find a .php template called `page-about-us.php` in the root theme directory and delete it, as well as the corresponding twig template in `/views/pages/`.
 
+###Create Subclasses
+
+Create a subclass of a built-in Timber class (TimberPost, TimberTerm etc.) in the lib directory by running `wp-timber -s <class> <name>`, where class refers to the class to extend and name is the name assigned to the new subclass.  Site, term, post, menu, menuitem, and user are all accepted as arguments for the base class.
+
+**Output**
+
+`wp-timber -s post TestPost`
+
+Creates TestPost.php in the `/lib` directory, with the following boilerplate:
+```php
+<?php
+
+Class TestPost extends TimberPost { 
+  // Add methods and properties here 
+} 
+
+?>
+```
+
+This will find a .php template called `page-about-us.php` in the root theme directory and delete it, as well as the corresponding twig template in `/views/pages/`.
+
 ###Build from a Config file
 With Timber CLI you can generate a series of templates with queries from a configuration file. Create a `.timber` file that contains JSON to generate as many templates with queries as you want.
 
