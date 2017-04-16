@@ -1,14 +1,14 @@
 
-##Requirements
+## Requirements
 You must be using [Timber](https://github.com/jarednova/timber) for WordPress.
 
-##Installation
+## Installation
 run `npm install --save wp-timber-cli` inside your root WordPress theme directory.
 
-##Usage
+## Usage
 Timber CLI will create a WordPress PHP template and corresponding twig template and automatically create some default Timber stuff.
 
-###Create Templates
+### Create Templates
 From the command line, run `wp-timber -c <type> <name>` where type is the type of template (page, single, archive) and name is, you guessed it, the name of the template.
 
 **Example Output**
@@ -31,7 +31,7 @@ Timber::render("/views/pages/page-test.twig", $context);
 ?>
 ```
 
-###Create Query
+### Create Query
 You can create a basic WordPress query for an existing page template, or when create a new template using this CLI.
 
 **Existing Template**
@@ -61,13 +61,13 @@ Timber::render("/views/pages/page-about.twig", $context);
 ```
 
 
-###Remove Templates
+### Remove Templates
 
 `wp-timber -r page about-us`
 
 This will find a .php template called `page-about-us.php` in the root theme directory and delete it, as well as the corresponding twig template in `/views/pages/`.
 
-###Create Subclasses
+### Create Subclasses
 
 Create a subclass of a built-in Timber class (TimberPost, TimberTerm etc.) in the lib directory by running `wp-timber -s <class> <name>`, where class refers to the class to extend and name is the name assigned to the new subclass.  Site, term, post, menu, menuitem, and user are all accepted as arguments for the base class.
 
@@ -88,7 +88,7 @@ Class TestPost extends TimberPost {
 
 This will find a .php template called `page-about-us.php` in the root theme directory and delete it, as well as the corresponding twig template in `/views/pages/`.
 
-###Build from a Config file
+### Build from a Config file
 With Timber CLI you can generate a series of templates with queries from a configuration file. Create a `.timber` file that contains JSON to generate as many templates with queries as you want.
 
 Here's an example config file:
